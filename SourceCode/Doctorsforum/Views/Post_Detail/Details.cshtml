@@ -1,0 +1,93 @@
+﻿@model Doctorsforum.Models.Post_Detail
+
+@{
+  ViewBag.Title = "Details";
+  Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Post</h2>
+<h4>Post Details</h4>
+
+<div class="container">
+  <hr />
+  <dl class="dl-horizontal">
+    <dt>
+      @Html.DisplayNameFor(model => model.Level)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => model.Level)
+    </dd>
+
+    <dt>
+      @Html.DisplayNameFor(model => model.forid)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => model.forid)
+    </dd>
+
+    <dt>
+      @Html.DisplayNameFor(model => model.Image)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => model.Image)
+    </dd>
+
+    <dt>
+      @Html.DisplayNameFor(model => model.NumericalOrder)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => model.NumericalOrder)
+    </dd>
+
+    <dt>
+      @Html.DisplayNameFor(model => model.Email)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => model.Email)
+    </dd>
+
+    <dt>
+      @Html.DisplayNameFor(model => model.TimePost)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => model.TimePost)
+    </dd>
+
+    <dt>
+      @Html.DisplayNameFor(model => model.Content)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => model.Content)
+    </dd>
+
+    <dt>
+      @Html.DisplayNameFor(model => model.Userpost)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => model.Userpost)
+    </dd>
+
+    <dt>
+      @Html.DisplayNameFor(model => model.Topic.TopicName)
+    </dt>
+
+    <dd>
+      @Html.DisplayFor(model => model.Topic.TopicName)
+    </dd>
+
+  </dl>
+</div>
+
+<hr />
+
+<div class="text-center">
+  @Html.ActionLink("Edit", "Edit", new { id = Model.Post_id }) | @Html.ActionLink("Back to List", "Index")
+</div>

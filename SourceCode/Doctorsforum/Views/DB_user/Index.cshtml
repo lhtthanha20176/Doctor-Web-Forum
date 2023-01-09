@@ -1,0 +1,154 @@
+﻿@model IEnumerable<Doctorsforum.Models.DB_user>
+
+@{
+  ViewBag.Title = "Index";
+  Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<span style="color:green;font-size:1.5em;">@TempData["meseger"]</span>
+<div class="data-table-area mg-b-15">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="sparkline13-list">
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <h2>User</h2>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <span class="pull-right">
+                <a href="~/DB_user/Create">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+                  </svg>
+                  Create new
+                </a>
+              </span>
+            </div>
+          </div>
+          <div class="sparkline13-graph">
+            <div class="datatable-dashv1-list custom-datatable-overright">
+              <div id="toolbar">
+                <select class="form-control dt-tb">
+                  <option value="">Export Basic</option>
+                  <option value="all">Export All</option>
+                  <option value="selected">Export Selected</option>
+                </select>
+              </div>
+              <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                     data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                <thead>
+                  <tr>
+                    <th>
+                      @Html.DisplayNameFor(model => model.User_id)
+                    </th>
+                    <th>
+                      @Html.DisplayNameFor(model => model.First_name)
+                    </th>
+                    <th>
+                      @Html.DisplayNameFor(model => model.Last_name)
+                    </th>
+                    <th>
+                      @Html.DisplayNameFor(model => model.Image)
+                    </th>
+                    <th>
+                      @Html.DisplayNameFor(model => model.Address)
+                    </th>
+                    <th>
+                      @Html.DisplayNameFor(model => model.Phone_number)
+                    </th>
+                    <th>
+                      @Html.DisplayNameFor(model => model.Email_address)
+                    </th>
+                    <th>
+                      @Html.DisplayNameFor(model => model.Sex)
+                    </th>
+                    <th>
+                      @Html.DisplayNameFor(model => model.Age)
+                    </th>
+                    <th>
+                      @Html.DisplayNameFor(model => model.Experience)
+                    </th>
+                    <th>
+                      @Html.DisplayNameFor(model => model.profession)
+                    </th>
+                    <th>
+                      @Html.DisplayNameFor(model => model.public_profile)
+                    </th>
+                    <th>
+                      @Html.DisplayNameFor(model => model.Status)
+                    </th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach (var item in Model) {
+                    if ("Admin" != item.User_id) {
+                      <tr>
+                        <td>
+                          @Html.DisplayFor(modelItem => item.User_id)
+                        </td>
+                        <td>
+                          @Html.DisplayFor(modelItem => item.First_name)
+                        </td>
+                        <td>
+                          @Html.DisplayFor(modelItem => item.Last_name)
+                        </td>
+                        <td>
+                          @Html.DisplayFor(modelItem => item.Image)
+                        </td>
+                        <td>
+                          @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td>
+                          @Html.DisplayFor(modelItem => item.Phone_number)
+                        </td>
+                        <td>
+                          @Html.DisplayFor(modelItem => item.Email_address)
+                        </td>
+                        <td>
+                          @Html.DisplayFor(modelItem => item.Sex)
+                        </td>
+                        <td>
+                          @Html.DisplayFor(modelItem => item.Age)
+                        </td>
+                        <td>
+                          @Html.DisplayFor(modelItem => item.Experience)
+                        </td>
+                        <td>
+                          @Html.DisplayFor(modelItem => item.profession)
+                        </td>
+                        @{
+                          var pro = item.public_profile;
+                          string s = "";
+                          if (pro == 1) {
+                            s = "Yes";
+                          } else {
+                            s = "No";
+                          }
+
+                        }
+                        <td>
+                          <label>@s</label>
+                        </td>
+                        <td>
+                          @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                          @Html.ActionLink("Edit", "Edit", new { id = item.User_id }) <br />
+                          @Html.ActionLink("View Post", "Details", new { id = item.User_id })  <br />
+                          @Html.ActionLink("Delete", "Delete", new { id = item.User_id })
+                        </td>
+                      </tr>
+                    }
+                  }
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Static Table End -->

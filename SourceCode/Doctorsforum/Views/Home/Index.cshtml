@@ -1,0 +1,35 @@
+﻿@{
+  ViewBag.Title = "Home Page";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<div class="container">
+  <div class="row">
+    <br />
+    @foreach (var post in ViewBag.Post) {
+      if (post.Level == 0) {
+        <div class="col-12 my-3">
+          <div class="media g-mb-30 media-comment">
+            <a href="/Home/Profileuser/@post.Userpost"><img class="d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15 border" src="@Html.Action("imguser",new {id=post.Userpost})" alt="Image Description"></a>
+            <div class="media-body u-shadow-v18 g-bg-secondary g-pa-30 border">
+              <img src="@(post.Image == null ? String.Empty : ("/image/" + post.Image))" alt="post-image" class="w-100">
+              <div class="g-mb-15">
+                <a href="/Home/Profileuser/@post.Userpost">   <h4 style="font-weight:800;">@Html.Action("nameuser", new { id = post.Userpost })</h4></a>
+                <span style="font-size:0.8em;">@post.TimePost</span>
+              </div>
+              <p style="font-size:1.5em;">
+                @post.Content
+              </p>
+              <ul class="list-inline d-sm-flex my-0">
+                <li class="list-inline-item ml-auto">
+                  <i class="fa fa-reply g-pos-rel g-top-1 g-mr-3"></i>
+                  @Html.ActionLink("View Detall", "PostDetal", new { id = post.Post_id }, new { @class = "u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" })
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      }
+    }
+  </div>
+</div>

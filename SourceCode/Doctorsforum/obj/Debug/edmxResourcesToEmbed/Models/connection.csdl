@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Doctorsforum.Models" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Achievement">
+    <Key>
+      <PropertyRef Name="AchID" />
+    </Key>
+    <Property Name="AchID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AchName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Issued_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Date_Range" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="DB_user" Relationship="Self.FK__Achieveme__User___2E1BDC42" FromRole="Achievement" ToRole="DB_user" />
+  </EntityType>
+  <EntityType Name="DB_user">
+    <Key>
+      <PropertyRef Name="User_id" />
+    </Key>
+    <Property Name="User_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="First_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Phone_number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email_address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Sex" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Age" Type="Int32" Nullable="false" />
+    <Property Name="Experience" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="profession" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="public_profile" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Achievements" Relationship="Self.FK__Achieveme__User___2E1BDC42" FromRole="DB_user" ToRole="Achievement" />
+    <NavigationProperty Name="Professionals" Relationship="Self.FK__Professio__User___2B3F6F97" FromRole="DB_user" ToRole="Professional" />
+    <NavigationProperty Name="Qualifications" Relationship="Self.FK__Qualifica__User___267ABA7A" FromRole="DB_user" ToRole="Qualification" />
+  </EntityType>
+  <EntityType Name="Post_Detail">
+    <Key>
+      <PropertyRef Name="Post_id" />
+    </Key>
+    <Property Name="Post_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Level" Type="Int32" />
+    <Property Name="forid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="NumericalOrder" Type="Int32" Nullable="false" />
+    <Property Name="Topic_id" Type="Int32" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TimePost" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Userpost" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Topic" Relationship="Self.FK__Post_Deta__Topic__30F848ED" FromRole="Post_Detail" ToRole="Topic" />
+  </EntityType>
+  <EntityType Name="Professional">
+    <Key>
+      <PropertyRef Name="ProID" />
+    </Key>
+    <Property Name="ProID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ProName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Date_Range" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Issued_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="DB_user" Relationship="Self.FK__Professio__User___2B3F6F97" FromRole="Professional" ToRole="DB_user" />
+  </EntityType>
+  <EntityType Name="Qualification">
+    <Key>
+      <PropertyRef Name="QualiID" />
+    </Key>
+    <Property Name="QualiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="User_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="QualiName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Date_Range" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Issued_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="DB_user" Relationship="Self.FK__Qualifica__User___267ABA7A" FromRole="Qualification" ToRole="DB_user" />
+  </EntityType>
+  <EntityType Name="Topic">
+    <Key>
+      <PropertyRef Name="Topic_id" />
+    </Key>
+    <Property Name="Topic_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TopicName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Post_Detail" Relationship="Self.FK__Post_Deta__Topic__30F848ED" FromRole="Topic" ToRole="Post_Detail" />
+  </EntityType>
+  <Association Name="FK__Achieveme__User___2E1BDC42">
+    <End Role="DB_user" Type="Self.DB_user" Multiplicity="1" />
+    <End Role="Achievement" Type="Self.Achievement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DB_user">
+        <PropertyRef Name="User_id" />
+      </Principal>
+      <Dependent Role="Achievement">
+        <PropertyRef Name="User_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Professio__User___2B3F6F97">
+    <End Role="DB_user" Type="Self.DB_user" Multiplicity="1" />
+    <End Role="Professional" Type="Self.Professional" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DB_user">
+        <PropertyRef Name="User_id" />
+      </Principal>
+      <Dependent Role="Professional">
+        <PropertyRef Name="User_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Qualifica__User___267ABA7A">
+    <End Role="DB_user" Type="Self.DB_user" Multiplicity="1" />
+    <End Role="Qualification" Type="Self.Qualification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DB_user">
+        <PropertyRef Name="User_id" />
+      </Principal>
+      <Dependent Role="Qualification">
+        <PropertyRef Name="User_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Post_Deta__Topic__30F848ED">
+    <End Role="Topic" Type="Self.Topic" Multiplicity="1" />
+    <End Role="Post_Detail" Type="Self.Post_Detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Topic">
+        <PropertyRef Name="Topic_id" />
+      </Principal>
+      <Dependent Role="Post_Detail">
+        <PropertyRef Name="Topic_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DB_DoctorsforumEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Achievements" EntityType="Self.Achievement" />
+    <EntitySet Name="DB_user" EntityType="Self.DB_user" />
+    <EntitySet Name="Post_Detail" EntityType="Self.Post_Detail" />
+    <EntitySet Name="Professionals" EntityType="Self.Professional" />
+    <EntitySet Name="Qualifications" EntityType="Self.Qualification" />
+    <EntitySet Name="Topics" EntityType="Self.Topic" />
+    <AssociationSet Name="FK__Achieveme__User___2E1BDC42" Association="Self.FK__Achieveme__User___2E1BDC42">
+      <End Role="DB_user" EntitySet="DB_user" />
+      <End Role="Achievement" EntitySet="Achievements" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Professio__User___2B3F6F97" Association="Self.FK__Professio__User___2B3F6F97">
+      <End Role="DB_user" EntitySet="DB_user" />
+      <End Role="Professional" EntitySet="Professionals" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Qualifica__User___267ABA7A" Association="Self.FK__Qualifica__User___267ABA7A">
+      <End Role="DB_user" EntitySet="DB_user" />
+      <End Role="Qualification" EntitySet="Qualifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Post_Deta__Topic__30F848ED" Association="Self.FK__Post_Deta__Topic__30F848ED">
+      <End Role="Topic" EntitySet="Topics" />
+      <End Role="Post_Detail" EntitySet="Post_Detail" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

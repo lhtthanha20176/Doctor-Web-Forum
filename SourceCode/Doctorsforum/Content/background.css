@@ -1,0 +1,6 @@
+﻿.background {
+  background-image: linear-gradient( rgba(255, 255, 255, 0.7), rgba(255,255,255,0.7) ), url("/Admin/img/logo/background.png");
+  background-repeat: repeat-y;
+  background-position: top;
+  background-size: contain;
+}

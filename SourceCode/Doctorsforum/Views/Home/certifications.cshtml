@@ -1,0 +1,76 @@
+﻿
+@{
+  ViewBag.Title = "certifications";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+  <h2>Certifications</h2>
+
+  <hr />
+
+  <h4>Achievement</h4>
+  <table class="table table-bordered bg-light">
+    <thead>
+      <tr>
+        <td>Achievement Name</td>
+        <td>Issued by </td>
+        <td>Date Range</td>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach (var av in ViewBag.Achievement) {
+        <tr>
+          <td>@av.AchName</td>
+          <td>@av.Issued_by</td>
+          <td>@av.Date_Range</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+  <hr />
+
+  <h4>Professional</h4>
+  <table class="table table-bordered bg-light">
+    <thead>
+      <tr>
+        <td>Professional Name</td>
+        <td>Issued by </td>
+        <td>Date Range</td>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach (var av in ViewBag.Professional) {
+        <tr>
+          <td>@av.ProName</td>
+          <td>@av.Issued_by</td>
+          <td>@av.Date_Range</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+  <hr />
+
+  <h4>Qualification</h4>
+  <table class="table table-bordered bg-light">
+    <thead>
+      <tr>
+        <td>Qualification Name</td>
+        <td>Issued by </td>
+        <td>Date Range</td>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach (var av in ViewBag.Qualification) {
+        <tr>
+          <td>@av.QualiName</td>
+          <td>@av.Issued_by</td>
+          <td>@av.Date_Range</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+
+</div>

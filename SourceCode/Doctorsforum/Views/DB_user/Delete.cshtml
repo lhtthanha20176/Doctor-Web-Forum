@@ -1,0 +1,139 @@
+﻿@model Doctorsforum.Models.DB_user
+
+@{
+  ViewBag.Title = "Delete";
+  Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid flex-1">
+  <h2>User</h2>
+  <h4>Delete User</h4>
+
+  <div class="container">
+    <h3>Are you sure you want to delete this User?</h3>
+    <hr />
+    <dl class="dl-horizontal mx-auto">
+      <dt>
+        @Html.DisplayNameFor(model => model.Password)
+      </dt>
+
+      <dd>
+        @Html.DisplayFor(model => model.Password)
+      </dd>
+
+      <dt>
+        @Html.DisplayNameFor(model => model.First_name)
+      </dt>
+
+      <dd>
+        @Html.DisplayFor(model => model.First_name)
+      </dd>
+
+      <dt>
+        @Html.DisplayNameFor(model => model.Last_name)
+      </dt>
+
+      <dd>
+        @Html.DisplayFor(model => model.Last_name)
+      </dd>
+
+      <dt>
+        @Html.DisplayNameFor(model => model.Image)
+      </dt>
+
+      <dd>
+        @Html.DisplayFor(model => model.Image)
+      </dd>
+
+      <dt>
+        @Html.DisplayNameFor(model => model.Address)
+      </dt>
+
+      <dd>
+        @Html.DisplayFor(model => model.Address)
+      </dd>
+
+      <dt>
+        @Html.DisplayNameFor(model => model.Phone_number)
+      </dt>
+
+      <dd>
+        @Html.DisplayFor(model => model.Phone_number)
+      </dd>
+
+      <dt>
+        @Html.DisplayNameFor(model => model.Email_address)
+      </dt>
+
+      <dd>
+        @Html.DisplayFor(model => model.Email_address)
+      </dd>
+
+      <dt>
+        @Html.DisplayNameFor(model => model.Sex)
+      </dt>
+
+      <dd>
+        @Html.DisplayFor(model => model.Sex)
+      </dd>
+
+      <dt>
+        @Html.DisplayNameFor(model => model.Age)
+      </dt>
+
+      <dd>
+        @Html.DisplayFor(model => model.Age)
+      </dd>
+
+      <dt>
+        @Html.DisplayNameFor(model => model.Experience)
+      </dt>
+
+      <dd>
+        @Html.DisplayFor(model => model.Experience)
+      </dd>
+
+      <dt>
+        @Html.DisplayNameFor(model => model.profession)
+      </dt>
+
+      <dd>
+        @Html.DisplayFor(model => model.profession)
+      </dd>
+
+      <dt>
+        @Html.DisplayNameFor(model => model.public_profile)
+      </dt>
+
+      <dd>
+        @Html.DisplayFor(model => model.public_profile)
+      </dd>
+
+      <dt>
+        @Html.DisplayNameFor(model => model.Status)
+      </dt>
+
+      <dd>
+        @Html.DisplayFor(model => model.Status)
+      </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+      @Html.AntiForgeryToken()
+
+      <div class="form-actions no-color">
+        <input type="submit" value="Delete" class="btn btn-primary btn-block" />
+
+        <hr />
+
+        <div class="text-center">
+          @Html.ActionLink("Back to List", "Index")
+        </div>
+
+      </div>
+    }
+  </div>
+
+</div>
+

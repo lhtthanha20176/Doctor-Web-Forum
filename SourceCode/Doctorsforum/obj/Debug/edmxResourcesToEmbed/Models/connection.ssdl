@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Doctorsforum.Models.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Achievement">
+    <Key>
+      <PropertyRef Name="AchID" />
+    </Key>
+    <Property Name="AchID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="User_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="AchName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Issued_by" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Date_Range" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DB_user">
+    <Key>
+      <PropertyRef Name="User_id" />
+    </Key>
+    <Property Name="User_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="First_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Last_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Image" Type="varchar" MaxLength="250" />
+    <Property Name="Address" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="Phone_number" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email_address" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Sex" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Age" Type="int" Nullable="false" />
+    <Property Name="Experience" Type="varchar" MaxLength="50" />
+    <Property Name="profession" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="public_profile" Type="int" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Post_Detail">
+    <Key>
+      <PropertyRef Name="Post_id" />
+    </Key>
+    <Property Name="Post_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Level" Type="int" />
+    <Property Name="forid" Type="varchar" MaxLength="50" />
+    <Property Name="Image" Type="varchar" MaxLength="250" />
+    <Property Name="NumericalOrder" Type="int" Nullable="false" />
+    <Property Name="Topic_id" Type="int" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="TimePost" Type="datetime" Nullable="false" />
+    <Property Name="Content" Type="ntext" Nullable="false" />
+    <Property Name="Userpost" Type="varchar" MaxLength="250" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Professional">
+    <Key>
+      <PropertyRef Name="ProID" />
+    </Key>
+    <Property Name="ProID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="User_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Date_Range" Type="date" Nullable="false" />
+    <Property Name="Issued_by" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Qualification">
+    <Key>
+      <PropertyRef Name="QualiID" />
+    </Key>
+    <Property Name="QualiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="User_id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="QualiName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Date_Range" Type="date" Nullable="false" />
+    <Property Name="Issued_by" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Topic">
+    <Key>
+      <PropertyRef Name="Topic_id" />
+    </Key>
+    <Property Name="Topic_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TopicName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Achieveme__User___2E1BDC42">
+    <End Role="DB_user" Type="Self.DB_user" Multiplicity="1" />
+    <End Role="Achievement" Type="Self.Achievement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DB_user">
+        <PropertyRef Name="User_id" />
+      </Principal>
+      <Dependent Role="Achievement">
+        <PropertyRef Name="User_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Post_Deta__Topic__30F848ED">
+    <End Role="Topic" Type="Self.Topic" Multiplicity="1" />
+    <End Role="Post_Detail" Type="Self.Post_Detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Topic">
+        <PropertyRef Name="Topic_id" />
+      </Principal>
+      <Dependent Role="Post_Detail">
+        <PropertyRef Name="Topic_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Professio__User___2B3F6F97">
+    <End Role="DB_user" Type="Self.DB_user" Multiplicity="1" />
+    <End Role="Professional" Type="Self.Professional" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DB_user">
+        <PropertyRef Name="User_id" />
+      </Principal>
+      <Dependent Role="Professional">
+        <PropertyRef Name="User_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Qualifica__User___267ABA7A">
+    <End Role="DB_user" Type="Self.DB_user" Multiplicity="1" />
+    <End Role="Qualification" Type="Self.Qualification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DB_user">
+        <PropertyRef Name="User_id" />
+      </Principal>
+      <Dependent Role="Qualification">
+        <PropertyRef Name="User_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DoctorsforumModelsStoreContainer">
+    <EntitySet Name="Achievement" EntityType="Self.Achievement" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DB_user" EntityType="Self.DB_user" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Post_Detail" EntityType="Self.Post_Detail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Professional" EntityType="Self.Professional" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Qualification" EntityType="Self.Qualification" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Topic" EntityType="Self.Topic" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Achieveme__User___2E1BDC42" Association="Self.FK__Achieveme__User___2E1BDC42">
+      <End Role="DB_user" EntitySet="DB_user" />
+      <End Role="Achievement" EntitySet="Achievement" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Post_Deta__Topic__30F848ED" Association="Self.FK__Post_Deta__Topic__30F848ED">
+      <End Role="Topic" EntitySet="Topic" />
+      <End Role="Post_Detail" EntitySet="Post_Detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Professio__User___2B3F6F97" Association="Self.FK__Professio__User___2B3F6F97">
+      <End Role="DB_user" EntitySet="DB_user" />
+      <End Role="Professional" EntitySet="Professional" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Qualifica__User___267ABA7A" Association="Self.FK__Qualifica__User___267ABA7A">
+      <End Role="DB_user" EntitySet="DB_user" />
+      <End Role="Qualification" EntitySet="Qualification" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

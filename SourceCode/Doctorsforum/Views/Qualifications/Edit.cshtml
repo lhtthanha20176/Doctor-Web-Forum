@@ -1,0 +1,66 @@
+﻿@model Doctorsforum.Models.Qualification
+
+@{
+  ViewBag.Title = "Edit";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm()) {
+  @Html.AntiForgeryToken()
+
+  <div class="container">
+    <h2>Edit Qualification</h2>
+
+    <div class="form-horizontal">
+      <h4>Qualification</h4>
+      <hr />
+      @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+      @Html.HiddenFor(model => model.QualiID)
+
+      <div class="form-group" style="display:none">
+        @Html.LabelFor(model => model.User_id, "User_id", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+          @Html.DropDownList("User_id", null, htmlAttributes: new { @class = "form-control" })
+          @Html.ValidationMessageFor(model => model.User_id, "", new { @class = "text-danger" })
+        </div>
+      </div>
+
+      <div class="form-group">
+        @Html.LabelFor(model => model.QualiName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+          @Html.EditorFor(model => model.QualiName, new { htmlAttributes = new { @class = "form-control" } })
+          @Html.ValidationMessageFor(model => model.QualiName, "", new { @class = "text-danger" })
+        </div>
+      </div>
+
+      <div class="form-group">
+        @Html.LabelFor(model => model.Issued_by, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+          @Html.EditorFor(model => model.Issued_by, new { htmlAttributes = new { @class = "form-control" } })
+          @Html.ValidationMessageFor(model => model.Issued_by, "", new { @class = "text-danger" })
+        </div>
+      </div>
+
+      <div class="form-group">
+        @Html.LabelFor(model => model.Date_Range, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+          <input type="date" name="Date_Range" class="form-control" />
+          @Html.ValidationMessageFor(model => model.Date_Range, "", new { @class = "text-danger" })
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+          <input type="submit" value="Save" class="btn btn-primary btn-block" />
+        </div>
+      </div>
+    </div>
+  </div>
+}
+
+<hr />
+
+<div class="text-center mt-5">
+  <a href="/Qualifications/Index/@Session["id"]">Back to List</a>
+</div>

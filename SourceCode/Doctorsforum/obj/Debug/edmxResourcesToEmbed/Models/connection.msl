@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DoctorsforumModelsStoreContainer" CdmEntityContainer="DB_DoctorsforumEntities">
+    <EntitySetMapping Name="Achievements">
+      <EntityTypeMapping TypeName="Doctorsforum.Models.Achievement">
+        <MappingFragment StoreEntitySet="Achievement">
+          <ScalarProperty Name="AchID" ColumnName="AchID" />
+          <ScalarProperty Name="User_id" ColumnName="User_id" />
+          <ScalarProperty Name="AchName" ColumnName="AchName" />
+          <ScalarProperty Name="Issued_by" ColumnName="Issued_by" />
+          <ScalarProperty Name="Date_Range" ColumnName="Date_Range" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DB_user">
+      <EntityTypeMapping TypeName="Doctorsforum.Models.DB_user">
+        <MappingFragment StoreEntitySet="DB_user">
+          <ScalarProperty Name="User_id" ColumnName="User_id" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="First_name" ColumnName="First_name" />
+          <ScalarProperty Name="Last_name" ColumnName="Last_name" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone_number" ColumnName="Phone_number" />
+          <ScalarProperty Name="Email_address" ColumnName="Email_address" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Experience" ColumnName="Experience" />
+          <ScalarProperty Name="profession" ColumnName="profession" />
+          <ScalarProperty Name="public_profile" ColumnName="public_profile" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Post_Detail">
+      <EntityTypeMapping TypeName="Doctorsforum.Models.Post_Detail">
+        <MappingFragment StoreEntitySet="Post_Detail">
+          <ScalarProperty Name="Post_id" ColumnName="Post_id" />
+          <ScalarProperty Name="Level" ColumnName="Level" />
+          <ScalarProperty Name="forid" ColumnName="forid" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="NumericalOrder" ColumnName="NumericalOrder" />
+          <ScalarProperty Name="Topic_id" ColumnName="Topic_id" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="TimePost" ColumnName="TimePost" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Userpost" ColumnName="Userpost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Professionals">
+      <EntityTypeMapping TypeName="Doctorsforum.Models.Professional">
+        <MappingFragment StoreEntitySet="Professional">
+          <ScalarProperty Name="ProID" ColumnName="ProID" />
+          <ScalarProperty Name="User_id" ColumnName="User_id" />
+          <ScalarProperty Name="ProName" ColumnName="ProName" />
+          <ScalarProperty Name="Date_Range" ColumnName="Date_Range" />
+          <ScalarProperty Name="Issued_by" ColumnName="Issued_by" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Qualifications">
+      <EntityTypeMapping TypeName="Doctorsforum.Models.Qualification">
+        <MappingFragment StoreEntitySet="Qualification">
+          <ScalarProperty Name="QualiID" ColumnName="QualiID" />
+          <ScalarProperty Name="User_id" ColumnName="User_id" />
+          <ScalarProperty Name="QualiName" ColumnName="QualiName" />
+          <ScalarProperty Name="Date_Range" ColumnName="Date_Range" />
+          <ScalarProperty Name="Issued_by" ColumnName="Issued_by" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Topics">
+      <EntityTypeMapping TypeName="Doctorsforum.Models.Topic">
+        <MappingFragment StoreEntitySet="Topic">
+          <ScalarProperty Name="Topic_id" ColumnName="Topic_id" />
+          <ScalarProperty Name="TopicName" ColumnName="TopicName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

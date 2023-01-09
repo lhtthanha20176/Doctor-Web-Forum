@@ -1,0 +1,67 @@
+﻿
+@{
+  ViewBag.Title = "PostDeteal";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="post-content border">
+        <img src="@(ViewBag.Postdetall.Image == null ? String.Empty : ("/image/" + ViewBag.Postdetall.Image))" alt="post-image" class="w-100">
+        <div class="post-container">
+          <a href="/Home/Profileuser/@ViewBag.Postdetall.Userpost">  <img src="@Html.Action("imguser",new {id= ViewBag.Postdetall.Userpost})" alt="user" class="profile-photo-md pull-left"></a>
+          <div class="post-detail">
+            <div class="user-info">
+              <h5><a href="/Home/Profileuser/@ViewBag.Postdetall.Userpost" class="profile-link">@Html.Action("nameuser", new { id = ViewBag.Postdetall.Userpost })</a></h5>
+            </div>
+            <div class="reaction">
+              <a href="/Home/Profileuser/@ViewBag.Postdetall.Userpost"> Topic: @Html.Action("topicname", new { id = ViewBag.Postdetall.Topic_id })</a>
+            </div>
+            <div class="line-divider"></div>
+            <div class="post-text">
+              <p>@ViewBag.Postdetall.Content <i class="em em-anguished"></i> <i class="em em-anguished"></i> <i class="em em-anguished"></i></p>
+            </div>
+            <hr />
+            @foreach (var conment in ViewBag.Comment) {
+              if (conment.Level != 0) {
+                <div class="post-comment mb-2">
+                  <a href="/Home/Profileuser/@conment.Userpost">
+                    <img src="@Html.Action("imguser", new { id = conment.Userpost })" alt="" class="profile-photo-sm">
+                  </a>
+                  <div>
+                    <a href="/Home/Profileuser/@conment.Userpost" class="profile-link">@conment.Userpost</a><i class="em em-laughing"></i>
+                    <p>
+                      @conment.Content
+                    </p>
+                    @if (Session["id"] != null) {
+                      if (Equals(conment.Userpost, Session["id"])) {
+                        @Html.ActionLink("Delete", "deletecoment", new { id = conment.Post_id }, new { @class = "u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" })
+                      }
+                    }
+                  </div>
+                </div>
+              }
+            }
+            @if (Session["id"] != null) {
+              <form method="post">
+                <div class="post-comment">
+                  <a href="/Home/Profileuser/@Session["id"]">  <img src="@Html.Action("imguser",new {id=Session["id"]})" alt="" class="profile-photo-sm"></a>
+                  <input type="text" name="conten" class="form-control" placeholder="Post a comment" required>
+                  <input type="submit" value="Comment" class="form-control btn btn-sm" />
+                  <input type="text" name="iduser" value="@ViewBag.Postdetall.Userpost" style="display:none">
+                  <input type="text" name="postid" value="@ViewBag.Postdetall.Post_id" style="display:none">
+                  <input type="text" name="topic_id" value="@ViewBag.Postdetall.Topic_id" style="display:none">
+                  <input type="text" name="idusp" value="@Session["id"]" style="display:none">
+                </div>
+              </form>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

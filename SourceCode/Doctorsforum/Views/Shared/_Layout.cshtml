@@ -1,0 +1,277 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>@ViewBag.Title - My ASP.NET Application</title>
+  <!-- <link rel="manifest" href="site.webmanifest"> -->
+  <link rel="shortcut icon" type="image/x-icon" href="~/Clien/img/favicon.png">
+  <!-- Place favicon.ico in the root directory -->
+  <!-- CSS here -->
+  <link rel="stylesheet" href="~/Content/img.css" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.2.4/css/fixedHeader.bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="~/Clien/css/bootstrap.min.css">
+  <link rel="stylesheet" href="~/Clien/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="~/Clien/css/magnific-popup.css">
+  <link rel="stylesheet" href="~/Clien/css/font-awesome.min.css">
+  <link rel="stylesheet" href="~/Clien/css/themify-icons.css">
+  <link rel="stylesheet" href="~/Clien/css/nice-select.css">
+  <link rel="stylesheet" href="~/Clien/css/flaticon.css">
+  <link rel="stylesheet" href="~/Clien/css/gijgo.css">
+  <link rel="stylesheet" href="~/Clien/css/animate.css">
+  <link rel="stylesheet" href="~/Clien/css/slicknav.css">
+  <link rel="stylesheet" href="~/Clien/css/style.css">
+  <link rel="stylesheet" href="~/Admin/css/responsive.css">
+  <link rel="stylesheet" href="~/Content/post.css">
+  <link rel="stylesheet" href="~/Content/Postmater.css">
+  <link rel="stylesheet" href="~/Content/background.css">
+  @Styles.Render("~/Content/css")
+  @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+  <div class="d-flex align-items-start flex-column background" style="min-height: 100vh">
+    <header class="w-100 border sticky-top">
+      <div class="header-area">
+        <div class="header-top_area">
+          <div class="container">
+            <div class="row">
+              <div class="col-xl-6 col-md-6 ">
+                <div class="social_media_links">
+                  <a href="#">
+                    <i class="fa fa-linkedin text-dark"></i>
+                  </a>
+                  <a href="#">
+                    <i class="fa fa-facebook text-dark"></i>
+                  </a>
+                  <a href="#">
+                    <i class="fa fa-google-plus text-dark"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="col-xl-6 col-md-6">
+                <div class="short_contact_list">
+                  <ul>
+                    <li><a href="#"> <i class="fa fa-envelope"></i><span class="text-dark">info.doctors-forum@gmail.com</span></a></li>
+                    <li><a href="#"> <i class="fa fa-phone"></i><span class="text-dark">1600-1234</span></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="sticky-header" class="main-header-area">
+          <div class="container-fluid">
+            <div class="row align-items-center">
+              <div class="col-xl-3 col-lg-2">
+                <div class="logo">
+                  <a href="/Home/Index">
+                    <img src="~/Admin/img/logo/logo.png" alt="" height="50">
+                  </a>
+                </div>
+              </div>
+              <div class="col-xl-6 col-lg-7">
+                <div class="main-menu d-none d-lg-block">
+                  <nav>
+                    <ul id="navigation">
+                      <li class="mx-4"><a class="active" href="/Home/Index">home</a></li>
+                      @{
+                        if (@Session["id"] == null) {
+                          <li class="mx-4"><a href="/Home/Register">Register</a></li>
+                          <li class="mx-4"><a href="/Home/Login">Login</a></li>
+                        } else {
+                          <li class="mx-4"><a href="/Home/Post">Create new Post</a></li>
+                        }
+                      }
+                      <li class="mx-4">
+                        <form action="/Home/search" method="post">
+                          <input type="text" name="search" />
+                          <input type="submit" value="search" />
+                        </form>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              </div>
+              <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+                <div class="Appointment">
+                  <div>
+                    <b>Register: </b><span>@Session["register"]</span>
+                    <br />
+                    <b>Online: </b><span>@Session["online"]</span>
+                  </div>
+                  @if (@Session["id"] != null) {
+                    <a href="/Home/Profileuser/@Session["id"]" class="row" style="align-items:center; margin-left:5px;">
+                      <img class="col-6" src="@Session["img"]" alt="" width="50" height="50">
+                      <div style="font-family:'Times New Roman';font-weight:700;font-size:1.5em;color:red;">@Session["name"]</div>
+                    </a>
+                    <div style="margin-left:-60px;font-family: 'Times New Roman'; font-weight: 700; font-size: 1.5em; color: red;"> @Html.ActionLink("Logout", "logout", new { id = Session["id"] }, new { @class = "btn btn-primary btn-block" })</div>
+                  }
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="mobile_menu d-block d-lg-none"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="container-fluid p-5" style="flex: 1">
+      @RenderBody()
+      <hr />
+    </div>
+    <footer class="footer mt-auto w-100">
+      <div class="footer_top">
+        <div class="container">
+          <div class="row">
+            <div class="col-xl-4 col-md-6 col-lg-4">
+              <div class="footer_widget">
+                <div class="footer_logo">
+                  <a href="#">
+                    <img src="~/Admin/img/logo/logo.png" height="100" alt="">
+                  </a>
+                </div>
+                <p>
+                  Firmament morning sixth subdue darkness
+                  creeping gathered divide.
+                </p>
+                <div class="socail_links">
+                  <ul>
+                    <li>
+                      <a href="#">
+                        <i class="ti-facebook"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <i class="ti-twitter-alt"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <i class="fa fa-instagram"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+            <div class="col-xl-2 offset-xl-1 col-md-6 col-lg-3">
+              <div class="footer_widget">
+                <h3 class="footer_title">
+                  Departments
+                </h3>
+                <ul>
+                  <li><a href="#">Eye Care</a></li>
+                  <li><a href="#">Skin Care</a></li>
+                  <li><a href="#">Pathology</a></li>
+                  <li><a href="#">Medicine</a></li>
+                  <li><a href="#">Dental</a></li>
+                </ul>
+
+              </div>
+            </div>
+            <div class="col-xl-2 col-md-6 col-lg-2">
+              <div class="footer_widget">
+                <h3 class="footer_title">
+                  Useful Links
+                </h3>
+                <ul>
+                  <li><a href="#">About</a></li>
+                  <li><a href="#">Blog</a></li>
+                  <li><a href="#">About</a></li>
+                  <li><a href="#"> Contact</a></li>
+                  <li><a href="#"> Appointment</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-6 col-lg-3">
+              <div class="footer_widget">
+                <h3 class="footer_title">
+                  Address
+                </h3>
+                <p>
+                  Cantho, Vietnam<br>
+                  1600-1234<br>
+                  info.doctors-forum@gmail.com
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="copy-right_text">
+        <div class="container">
+          <div class="footer_border"></div>
+          <div class="row">
+            <div class="col-xl-12">
+              <p class="copy_right text-center">
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                Copyright &copy;
+                <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <!-- footer end  -->
+  <!-- link that opens popup -->
+  <!-- form itself end-->
+  <!-- form itself end -->
+  <!-- JS here -->
+  <script src="~/Clien/js/vendor/modernizr-3.5.0.min.js"></script>
+  <script src="~/Clien/js/vendor/jquery-1.12.4.min.js"></script>
+  <script src="~/Clien/js/popper.min.js"></script>
+  <script src="~/Clien/js/bootstrap.min.js"></script>
+  <script src="~/Clien/js/owl.carousel.min.js"></script>
+  <script src="~/Clien/js/isotope.pkgd.min.js"></script>
+  <script src="~/Clien/js/ajax-form.js"></script>
+  <script src="~/Clien/js/waypoints.min.js"></script>
+  <script src="~/Clien/js/jquery.counterup.min.js"></script>
+  <script src="~/Clien/js/imagesloaded.pkgd.min.js"></script>
+  <script src="~/Clien/js/scrollIt.js"></script>
+  <script src="~/Clien/js/jquery.scrollUp.min.js"></script>
+  <script src="~/Clien/js/wow.min.js"></script>
+  <script src="~/Clien/js/nice-select.min.js"></script>
+  <script src="~/Clien/js/jquery.slicknav.min.js"></script>
+  <script src="~/Clien/js/jquery.magnific-popup.min.js"></script>
+  <script src="~/Clien/js/plugins.js"></script>
+  <script src="~/Clien/js/gijgo.min.js"></script>
+  <!--contact js-->
+  <script src="~/Clien/js/contact.js"></script>
+  <script src="~/Clien/js/jquery.ajaxchimp.min.js"></script>
+  <script src="~/Clien/js/jquery.form.js"></script>
+  <script src="~/Clien/js/jquery.validate.min.js"></script>
+  <script src="~/Clien/js/mail-script.js"></script>
+  <script src="~/Scripts/img.js"></script>
+  <script src="~/Scripts/getup.js"></script>
+  <script src="~/Clien/js/main.js"></script>
+  <script>
+    $('#datepicker').datepicker({
+      iconsLibrary: 'fontawesome',
+      icons: {
+        rightIcon: '<span class="fa fa-caret-down"></span>'
+      }
+    });
+    $('#datepicker2').datepicker({
+      iconsLibrary: 'fontawesome',
+      icons: {
+        rightIcon: '<span class="fa fa-caret-down"></span>'
+      }
+
+    });
+  </script>
+
+  @Scripts.Render("~/bundles/jquery")
+  @Scripts.Render("~/bundles/jqueryval")
+  @Scripts.Render("~/bundles/bootstrap")
+  @RenderSection("scripts", required: false)
+</body>
+</html>

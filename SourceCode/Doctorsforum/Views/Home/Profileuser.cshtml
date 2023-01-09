@@ -1,0 +1,152 @@
+﻿@{
+  ViewBag.Title = "Profile";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section>
+  <div class="container py-5">
+    <div class="row mb-5 bg-light">
+      <div class="col-12 bg-light">
+        <nav aria-label="breadcrumb" class="bg-light p-3 border">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="/Home/Index">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card mb-4">
+          <div class="card-body text-center">
+            <img src="/image/@ViewBag.user.Image" alt="avatar"
+                 class="rounded-circle img-fluid" style="width: 150px;">
+            <h5 class="my-3">@Session["name"]</h5>
+            <p class="text-muted mb-1">@ViewBag.user.profession</p>
+          </div>
+        </div>
+        @{
+          var id = Session["id"];
+        }
+        @if (Equals(id, ViewBag.user.User_id)) {
+          <div class="row mb-1">
+            @Html.ActionLink("Edit", "editprofile", new { id = @Session["id"] }, new { @class = "col-12 btn btn-rounded btn-success" })
+          </div>
+        }
+
+        @if (ViewBag.user.profession == "Doctor" && Equals(id, ViewBag.user.User_id) == true) {
+          <div class="row">
+            <a href="/Achievements/Index/@Session["id"]" class="btn btn-primary col-4">Achievement</a>
+            <a href="/Qualifications/Index/@Session["id"]" class="btn btn-primary col-4">Qualification</a>
+            <a href="/Professionals/Index/@Session["id"]" class="btn btn-primary col-4">Professionals</a>
+          </div>
+        }
+        @if (ViewBag.user.profession == "Doctor" && Equals(id, ViewBag.user.User_id) == false) {
+          <div class="row">
+            <a href="/Home/certifications/@ViewBag.user.User_id" class="col-12 btn btn-rounded btn-success">View Certifications</a>
+          </div>
+        }
+        @{
+          var pro = ViewBag.user.public_profile;
+          string s = "";
+          if (pro == 1) {
+            s = "Yes";
+          } else {
+            s = "No";
+          }
+        }
+
+        @if (pro == 1 || String.Equals(Session["id"], ViewBag.user.User_id)) {
+          <div class="card mt-4">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-4 col-md-12">
+                  <p class="mb-0">Email</p>
+                </div>
+                <div class="col-sm-8 col-md-12">
+                  <p class="text-muted mb-0">@ViewBag.user.Email_address</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-4 col-md-12">
+                  <p class="mb-0">Phone</p>
+                </div>
+                <div class="col-sm-8 col-md-12">
+                  <p class="text-muted mb-0">@ViewBag.user.Phone_number</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-4 col-md-12">
+                  <p class="mb-0">Sex</p>
+                </div>
+                <div class="col-sm-8 col-md-12">
+                  <p class="text-muted mb-0">@ViewBag.user.Sex</p>
+                </div>
+              </div>
+              <hr />
+              <div class="row">
+                <div class="col-sm-4 col-md-12">
+                  <p class="mb-0">Age</p>
+                </div>
+                <div class="col-sm-8 col-md-12">
+                  <p class="text-muted mb-0">@ViewBag.user.Age</p>
+                </div>
+              </div>
+              <hr />
+              <div class="row">
+                <div class="col-sm-4 col-md-12">
+                  <p class="mb-0">Address</p>
+                </div>
+                <div class="col-sm-8 col-md-12">
+                  <p class="text-muted mb-0">@ViewBag.user.Address</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+      <div class="col-lg-8">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <div class="row">
+          @if (pro == 1 || String.Equals(Session["id"], ViewBag.user.User_id)) {
+            foreach (var post in ViewBag.Post) {
+              if (post.Userpost == ViewBag.user.User_id && post.Level == 0) {
+                <div class="col-12 mb-3">
+                  <div class="media g-mb-30 media-comment">
+                    <img class="d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15" src="@Html.Action("imguser", new { id = post.Userpost })" alt="Image Description">
+                    <div class="media-body u-shadow-v18 g-bg-secondary g-pa-30 border">
+                      <div class="g-mb-15">
+                        <h4 style="font-weight:800;">@Html.Action("nameuser", new { id = post.Userpost })</h4>
+                        <span style="font-size:0.8em;">@post.TimePost</span>
+
+                      </div>
+                      <p style="font-size:1.5em;">
+                        @post.Content
+                      </p>
+                      <ul class="list-inline d-sm-flex my-0">
+                        <li class="list-inline-item ml-auto">
+                          @if (Equals(id, ViewBag.user.User_id)) {
+                            <a href="/Home/editpost/@post.Post_id" class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover">Edit</a>
+                            @Html.ActionLink("Delete", "delete", new { id = post.Post_id, idus = Session["id"] }, new { @class = "u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" })
+                          }
+                          @Html.ActionLink("View Detall", "PostDetal", new { id = post.Post_id }, new { @class = "u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" })
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              }
+            }
+          } else {
+            <div class="col-12 h-100">
+              <p class="text-center w-100 bg-light p-3 border">This profile is private</p>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

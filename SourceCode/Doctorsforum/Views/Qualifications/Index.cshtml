@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Doctorsforum.Models.Qualification>
+
+@{
+  ViewBag.Title = "Index";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+  <h2>Qualification</h2>
+
+  <p>
+    @Html.ActionLink("Create Qualification", "Create")
+  </p>
+  <table class="table table-bordered bg-light">
+    <thead>
+      <tr>
+        <th>
+          @Html.DisplayNameFor(model => model.QualiName)
+        </th>
+        <th>
+          @Html.DisplayNameFor(model => model.Issued_by)
+        </th>
+        <th>
+          @Html.DisplayNameFor(model => model.Date_Range)
+        </th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach (var item in Model) {
+        <tr>
+          <td>
+            @Html.DisplayFor(modelItem => item.QualiName)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.Issued_by)
+          </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.Date_Range)
+          </td>
+          <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.QualiID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.QualiID })
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+<hr />
+
+<div class="text-center mt-5">
+  <a href="/Home/Profileuser/@Session["id"]">Back to Profile</a>
+</div>
